@@ -28,9 +28,9 @@ var device = {
         "DeviceSecret": "adeaf0241a7b276732dff9a3caaf63a3"
     }),//取暖器
     airconditioner: iot.device({
-        "ProductKey": "a1FhLCr2CJ4",
-        "DeviceName": "air-conditioner",
-        "DeviceSecret": "0eac00be09761f2cf5a606057426a964"
+        "ProductKey": "a1hwHN7K8vA",
+        "DeviceName": "air-condition",
+        "DeviceSecret": "021d15646986dcd26952a2446403cdef"
     }),//空调
     fan1: iot.device({
         "ProductKey": "a14J7O6Lbst",

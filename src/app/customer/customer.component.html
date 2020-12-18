@@ -1,0 +1,10 @@
+<form class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">个人设置</h1>
+    <label for="password" class="sr-only">原密码</label>
+    <input type="password" id="password" class="form-control" placeholder="原密码" required="" autofocus="">
+    <label for="newpassword" class="sr-only">新密码</label>
+    <input type="password" id="newpassword" class="form-control space" placeholder="新密码" required="">
+    <label for="confirmpassword" class="sr-only">确认密码</label>
+    <input type="password" id="confirmpassword" class="form-control space" placeholder="确认密码" required="">
+    <button class="btn btn-lg btn-secondary btn-block space" type="submit" (click)="update()">确认修改</button>
+</form>

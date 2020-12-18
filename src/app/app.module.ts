@@ -8,15 +8,51 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { LoginGuard } from './login.guard';
+import { AuthService } from './auth.service';
+import { UserComponent } from './user/user.component';
+import { DeviceComponent } from './device/device.component';
+import { DataComponent } from './data/data.component';
+import { LedComponent } from './led/led.component';
+import { HumitureComponent } from './humiture/humiture.component';
+import { AirComponent } from './air/air.component';
+import { WarmerComponent } from './warmer/warmer.component';
+import { FanComponent } from './fan/fan.component';
+import { AdddeviceComponent } from './adddevice/adddevice.component';
+import { AllComponent } from './all/all.component';
+import { ManagerComponent } from './manager/manager.component';
+import { ProductsComponent } from './products/products.component';
+import { CustomerComponent } from './customer/customer.component';
+import { AddhumComponent } from './addhum/addhum.component';
+import { NgxEchartsModule } from 'ngx-echarts';
+import * as echarts from 'echarts';
 
-const homeChildRoutes: Routes = [
-  { path: 'home' }
+const ProductsChildRoutes: Routes = [
+  { path: 'all', component: AllComponent },
+  { path: '', redirectTo: 'all', pathMatch: 'full' },
+  { path: 'led', component: LedComponent },
+  { path: 'humiture', component: HumitureComponent },
+  { path: 'air', component: AirComponent },
+  { path: 'warmer', component: WarmerComponent },
+  { path: 'fan', component: FanComponent },
+  { path: 'addhum', component: AddhumComponent },
+]
+
+const ManagerChildRoutes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'products', component: ProductsComponent, children: ProductsChildRoutes },
+  { path: 'data', component: DataComponent },
+  { path: 'customer', component: CustomerComponent }
 ]
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },//登录
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, children: homeChildRoutes, canActivate: [LoginGuard] }
+  {
+    path: 'manager', component: ManagerComponent, children: ManagerChildRoutes,
+    // canActivate: [LoginGuard]
+  }
 ]
 
 
@@ -24,7 +60,22 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent,
+    DeviceComponent,
+    DataComponent,
+    LedComponent,
+    HumitureComponent,
+    AirComponent,
+    WarmerComponent,
+    FanComponent,
+    AdddeviceComponent,
+    AllComponent,
+    ManagerComponent,
+    ProductsComponent,
+    CustomerComponent,
+    AddhumComponent,
+    NgxEchartsModule
   ],
   imports: [
     BrowserModule,
@@ -32,9 +83,10 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes) // 引入路由模块
+    RouterModule.forRoot(routes), // 引入路由模块
+    NgxEchartsModule.forRoot({ echarts }),
   ],
-  providers: [],
+  providers: [LoginGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

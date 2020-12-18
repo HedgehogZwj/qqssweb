@@ -1,0 +1,25 @@
+ul{
+    margin: 0;  
+    padding: 0;  
+    width: 100%;
+}
+
+li{
+    list-style: none;  
+    margin: 10px 5px;  
+    font-size: 1.2rem;  
+    text-align: left;
+}
+
+.exit{
+    list-style: none;  
+    margin: 10px 30px;  
+    font-size: 1.2rem;
+    text-align: right;
+}
+.title{
+    margin-left: 70%;
+}
+td.mydiv:hover {
+    box-shadow: 0px 0px 3px 3px lightgray;
+}
