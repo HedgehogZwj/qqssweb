@@ -15,16 +15,8 @@ var connection = container.connect({
     //计算签名，password组装方法，请参见AMQP客户端接入说明文档。
     'password': hmacSha1('QorOFhTvNEVMOeukBFBcgtZyRHi2ta', 'authId=LTAI4FomDmD588HSFQASgsKD&timestamp=' + dt.getTime()),
 });
-
-//接收云端推送消息的回调函数。
-container.on('message', function (context) {
-    // var msg = context.message;
-    // var messageId = msg.message_id;
-    // var topic = msg.application_properties.topic;
-    // var content = Buffer.from(msg.body.content).toString();
-    // //发送ACK，注意不要在回调函数有耗时逻辑。
-    context.delivery.accept();
-});
+// connection.open_sender();
+//接收云端推送消息的回调函数
 
 function hmacSha1(key, context) {
     return Buffer.from(crypto.createHmac('sha1', key).update(context).digest())
@@ -44,4 +36,5 @@ var reqestOption = {
 module.exports = {
     client: client,
     reqestOption: reqestOption,
+    connection: connection
 }

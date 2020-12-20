@@ -19,7 +19,6 @@ const fanSubTopic = '/a14J7O6Lbst/fan1/user/get';
 //连接阿里云
 device1.on('connect', () => {
     device1.subscribe(ledSubTopic);
-    // console.log('connect successfully!');
     device1.publish('/a13FZl5d5Rq/led1/user/update', 'ZWJ IOT');
 })
 device2.on('connect', () => {
@@ -72,7 +71,7 @@ var message = {
     postHUM() {
         device3.postProps({
             CurrentHumidity: Number(this.alihumvalue)
-        }, (res) => { })
+        }, (res) => { console.log(res.message) })
     },
     postADDHUM() {
         device4.postProps({
@@ -104,16 +103,16 @@ device1.on('message', (topic, payload) => {
         message.aliLedStatus = Number(payload);
     }
 });
-device2.on('message', (topic, payload) => {
-    if (topic === temSubTopic) {
-        message.alitemvalue = Number(payload);
-    }
-});
-device3.on('message', (topic, payload) => {
-    if (topic === humSubTopic) {
-        message.alihumvalue = Number(payload);
-    }
-});
+// device2.on('message', (topic, payload) => {
+//     if (topic === temSubTopic) {
+//         message.alitemvalue = Number(payload);
+//     }
+// });
+// device3.on('message', (topic, payload) => {
+//     if (topic === humSubTopic) {
+//         message.alihumvalue = Number(payload);
+//     }
+// });
 device4.on('message', (topic, payload) => {
     if (topic === humidifierSubTopic) {
         message.alihumidifierStatus = Number(payload);
@@ -146,24 +145,23 @@ device1.onProps((cmd) => {
         }
     }
 })
-device2.onProps((cmd) => {
-    for (var key in cmd.params) {
-        if (key == 'CurrentTemperature') {
-            console.log('set property', key);
-            message.alitemvalue = Number(cmd.params.CurrentTemperature);
-            message.postTEM();
-        }
-    }
-})
-device3.onProps((cmd) => {
-    for (var key in cmd.params) {
-        if (key == 'CurrentHumidity') {
-            console.log('set property', key);
-            message.alihumvalue = Number(cmd.params.CurrentHumidity);
-            message.postHUM();
-        }
-    }
-})
+// device2.onProps((cmd) => {
+//     for (var key in cmd.params) {
+//         if (key == 'CurrentTemperature') {
+//             tem = Number(cmd.params.CurrentTemperature);
+//             console.log("come " + tem);
+//         }
+//     }
+// })
+// device3.onProps((cmd) => {
+//     for (var key in cmd.params) {
+//         if (key == 'CurrentHumidity') {
+//             console.log('set property', key);
+//             message.alihumvalue = Number(cmd.params.CurrentHumidity);
+//             message.postHUM();
+//         }
+//     }
+// })
 device4.onProps((cmd) => {
     for (var key in cmd.params) {
         if (key == 'PowerSwitch') {

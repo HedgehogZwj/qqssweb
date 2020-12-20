@@ -13,6 +13,8 @@ var data = {
         con.end();
     }
 }
+
+
 var device = {
     insert(req, resp) {
         //每次都需要创建新的连接
@@ -56,12 +58,13 @@ var device = {
         })
         con.end();
     },
-    delete(id, type) {
+    delete(id, type, resp) {
         //每次都需要创建新的连接
         con = mysql.createConnection(mysqlconfig.mysql);
         con.connect();
         var sql = "DELETE from device where type = '" + type + "' AND id = '" + id + "';";
         console.log(sql);
+        resp.end();
         con.query(sql);//还可以设置返回值
         con.end();
     },

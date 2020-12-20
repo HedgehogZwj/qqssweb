@@ -20,9 +20,9 @@
                     <td *ngIf="repa(i)">{{device.status}}</td>
                     <td *ngIf="repa(i)">{{device.info}}</td>
                     <td *ngIf="repa(i)">
-                        <button type="button" class="btn btn-info operator-button"
+                        <button type="button" class="btn btn-outline-warning operator-button"
                             (click)="updatepage(device.id,device.type,device.info)">修改</button>
-                        <button type="button" class="btn btn-danger operator-button"
+                        <button type="button" class="btn btn-outline-danger operator-button"
                             (click)="delete(device.id)">删除</button>
                     </td>
                 </tr>

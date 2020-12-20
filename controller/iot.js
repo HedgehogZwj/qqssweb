@@ -18,6 +18,7 @@ var iot = {
     tem: function (req, resp) {
         const id = req.params['id'];
         const value = req.params['value'];
+        message.alitemvalue = Number(value);
         data.insert(id, "tem", value);
         message.postTEM(Number(value));
         const obj = {
@@ -31,6 +32,7 @@ var iot = {
     hum: function (req, resp) {
         const id = req.params['id'];
         const value = req.params['value'];
+        message.alihumvalue = Number(value);
         data.insert(id, "hum", value);
         message.postHUM(Number(value));
         const obj = {

@@ -85,13 +85,14 @@ export class LedComponent implements OnInit {
     this.devices$.subscribe((val: any) => {
       this.sumnum$ = (<Array<device>>val).length;
       this.sumpage$ = Math.trunc(((<Array<device>>val).length / 6));
-      console.log(this.sumpage$)
       if ((<number>this.sumnum$ % 6) != 0) this.sumpage$ = this.sumpage$.valueOf() + 1;
       this.fill();
     })
   }
   delete(id) {
+    console.log("de")
     this.hc.delete(this.baseUrl + 'device/led/' + id).subscribe((val: any) => {
+      console.log("delete")
       this.init();
     })
   }
@@ -131,10 +132,9 @@ export class LedComponent implements OnInit {
     else return false;
   }
   init() {
-    console.log("delete")
     this.page$ = 1;
     this.sumpage$ = 0;
-    this.query();
+    this.exit();
   }
   ngOnInit(): void {
     this.init();

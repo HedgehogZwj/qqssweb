@@ -24,8 +24,9 @@ import { ManagerComponent } from './manager/manager.component';
 import { ProductsComponent } from './products/products.component';
 import { CustomerComponent } from './customer/customer.component';
 import { AddhumComponent } from './addhum/addhum.component';
-import { NgxEchartsModule } from 'ngx-echarts';
-import * as echarts from 'echarts';
+// import { NgxEchartsModule } from 'ngx-echarts';
+
+
 
 const ProductsChildRoutes: Routes = [
   { path: 'all', component: AllComponent },
@@ -75,7 +76,7 @@ const routes: Routes = [
     ProductsComponent,
     CustomerComponent,
     AddhumComponent,
-    NgxEchartsModule
+
   ],
   imports: [
     BrowserModule,
@@ -84,7 +85,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes), // 引入路由模块
-    NgxEchartsModule.forRoot({ echarts }),
+    // NgxEchartsModule,
   ],
   providers: [LoginGuard, AuthService],
   bootstrap: [AppComponent]
