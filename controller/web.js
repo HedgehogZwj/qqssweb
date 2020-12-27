@@ -55,11 +55,11 @@ var web = {
         AMQP.SetTEMVAL(resp);
     },
     getHUM: function (req, resp) {
-        AMQP.SetHUMVAL("", resp);
+        AMQP.SetHUMVAL(resp);
     },
     SetHUM: function (req, resp) {
-        HUM = req.body.value;
-        AMQP.SetHUMVAL(HUM, resp);
+        AMQP.HUM = req.body.value;
+        AMQP.SetHUMVAL(resp);
     },
     SetMINTEM: function (req, resp) {
         AMQP.MINTEM = req.body.value;

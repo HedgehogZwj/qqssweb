@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-customer',
@@ -9,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class CustomerComponent implements OnInit {
 
   baseUrl = 'http://localhost:8000/';
-  constructor(private hc: HttpClient) { }
+  constructor(private hc: HttpClient, private authService: AuthService) { }
   update() {
-    var userName = "zzy";
+    var userName = this.authService.currentUser;
     var password = (<HTMLInputElement>document.getElementById('password')).value;
     var newpassword = (<HTMLInputElement>document.getElementById('newpassword')).value;
     var confirmpassword = (<HTMLInputElement>document.getElementById('confirmpassword')).value;
@@ -22,6 +23,9 @@ export class CustomerComponent implements OnInit {
           this.hc.post(this.baseUrl + 'update', { userName: userName, password: newpassword }).subscribe((val: any) => {
             if (val.succ) {
               alert('修改成功');
+              (<HTMLInputElement>document.getElementById('password')).value = '';
+              (<HTMLInputElement>document.getElementById('newpassword')).value = '';
+              (<HTMLInputElement>document.getElementById('confirmpassword')).value = '';
             }
             else {
               alert('修改失败');

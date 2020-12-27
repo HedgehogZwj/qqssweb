@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~9.0.7",
     "@angular/platform-browser-dynamic": "~9.0.7",
     "@angular/router": "~9.0.7",
+    "@types/bmapgl": "0.0.3",
     "alibabacloud-iot-device-sdk": "^1.2.8",
     "body-parser": "^1.19.0",
     "echarts": "^5.0.0",
@@ -29,6 +30,7 @@
     "ngx-echarts": "^5.2.1",
     "rhea": "^1.0.12",
     "rxjs": "~6.5.4",
+    "serialport": "^9.0.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

@@ -1,5 +1,28 @@
-<div style="width: 100%;height: 80vh;">
-    <div class="info">最新版GL地图命名空间为BMapGL, 可按住鼠标右键控制地图旋转、修改倾斜角度。</div>
-    <div id="container"></div>
+<form class="row">
+    <div style="height: 80vh;" class="col-md-9">
+        <div id="r-result">请输入地理位置:<input type="text" id="suggestId" size="20" value=""
+                style="width:125px;height: 30px;" /></div>
+        <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:3rem; display:none;z-index: 999">
+        </div>
+        <div id="container"></div>
+    </div>
 
-</div>
+    <div class="col-md-3 order-md-2 mb-4">
+        <div class="p-3 mb-2 border shadow bg-white rounded-left text">
+            <div>
+                设备总数：7<br>
+                产品设备总数：5<br>
+                传感器设备总数：2
+            </div>
+        </div>
+        <div class="p-3 mb-2 border shadow bg-white rounded-left text">
+            <label for="">产品设备如下：</label>
+            <label for="">LED灯、加湿器、空调、暖炉、风扇</label>
+        </div>
+        <div class="p-3 mb-2 border shadow bg-white rounded-left text">
+            <label for="">传感器设备如下：</label>
+            <label for="">温度传感器&nbsp;</label>
+            <label for="">湿度传感器</label>
+        </div>
+    </div>
+</form>

@@ -49,7 +49,7 @@ device7.on('connect', () => {
 
 
 //信息结构
-var message = {
+var message = {//定义
     aliLedStatus: Number,
     alihumvalue: Number,
     alitemvalue: Number,
@@ -58,7 +58,7 @@ var message = {
     aliairStatus: Number,
     alifanStatus: Number,
     alifanvalue: Number,
-    postLED() {
+    postLED() {    //发送状态给阿里云
         device1.postProps({
             LightStatus: Number(this.aliLedStatus)
         }, (res) => { })
@@ -98,9 +98,9 @@ var message = {
 
 
 //赋值
-device1.on('message', (topic, payload) => {
-    if (topic === ledSubTopic) {
-        message.aliLedStatus = Number(payload);
+device1.on('message', (topic, payload) => { //
+    if (topic === ledSubTopic) {    //当与get请求相符时
+        message.aliLedStatus = Number(payload);  //赋予相应的值
     }
 });
 // device2.on('message', (topic, payload) => {
@@ -136,7 +136,7 @@ device7.on('message', (topic, payload) => {
 });
 
 
-device1.onProps((cmd) => {
+device1.onProps((cmd) => {  //相应开关请求
     for (var key in cmd.params) {
         if (key == 'LightStatus') {
             console.log('set property', key);
@@ -204,4 +204,4 @@ device7.onProps((cmd) => {
 })
 
 
-module.exports = message;
+module.exports = message; //导出message

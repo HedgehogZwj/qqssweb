@@ -14,11 +14,9 @@ import { UserComponent } from './user/user.component';
 import { DeviceComponent } from './device/device.component';
 import { DataComponent } from './data/data.component';
 import { LedComponent } from './led/led.component';
-import { HumitureComponent } from './humiture/humiture.component';
 import { AirComponent } from './air/air.component';
 import { WarmerComponent } from './warmer/warmer.component';
 import { FanComponent } from './fan/fan.component';
-import { AdddeviceComponent } from './adddevice/adddevice.component';
 import { AllComponent } from './all/all.component';
 import { ManagerComponent } from './manager/manager.component';
 import { ProductsComponent } from './products/products.component';
@@ -32,7 +30,6 @@ const ProductsChildRoutes: Routes = [
   { path: 'all', component: AllComponent },
   { path: '', redirectTo: 'all', pathMatch: 'full' },
   { path: 'led', component: LedComponent },
-  { path: 'humiture', component: HumitureComponent },
   { path: 'air', component: AirComponent },
   { path: 'warmer', component: WarmerComponent },
   { path: 'fan', component: FanComponent },
@@ -48,11 +45,11 @@ const ManagerChildRoutes: Routes = [
 ]
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },//登录
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },//登录
   {
     path: 'manager', component: ManagerComponent, children: ManagerChildRoutes,
-    // canActivate: [LoginGuard]
+    canActivate: [LoginGuard]
   }
 ]
 
@@ -66,11 +63,9 @@ const routes: Routes = [
     DeviceComponent,
     DataComponent,
     LedComponent,
-    HumitureComponent,
     AirComponent,
     WarmerComponent,
     FanComponent,
-    AdddeviceComponent,
     AllComponent,
     ManagerComponent,
     ProductsComponent,

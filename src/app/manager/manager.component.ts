@@ -10,8 +10,9 @@ import { AuthService } from '../auth.service';
 export class ManagerComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthService) { }
-
+  userName$;
   ngOnInit(): void {
+    this.userName$ = this.authService.currentUser;
   }
   exit() {
     this.authService.logout();

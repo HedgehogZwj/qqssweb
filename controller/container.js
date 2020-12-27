@@ -6,7 +6,6 @@ const crypto = require('crypto');
 
 connection.open_receiver();
 var lastid = 0;
-var hum = 1;
 function hmacSha1(key, context) {
     return Buffer.from(crypto.createHmac('sha1', key).update(context).digest())
         .toString('base64');
@@ -32,7 +31,7 @@ container.on('message', function (context) {
             let start = content.indexOf("value\":");
             let end = content.indexOf(",", start);
             if (start != 0)
-                hum = Number.parseFloat(content.substr(start + 7, end - start - 7));
+                AMQP.humidity = Number.parseFloat(content.substr(start + 7, end - start - 7));
             // console.log(content.substr(start + 7, end - start - 7));
         }
     }
@@ -44,6 +43,8 @@ var AMQP = {
     MINTEM: Number,
     MAXTEM: Number,
     tem: Number,
+    HUM: Number,
+    humidity: Number,
     SetLED(status, resp) {
         var params = {
             "RegionId": "cn-shanghai",
@@ -52,22 +53,22 @@ var AMQP = {
             "DeviceName": "led1",
             "LightStatus": status
         }
-        console.log(status);
+        // console.log(status);
         client.request('SetDeviceProperty', params, reqestOption).then((result) => {
             console.log(JSON.stringify(result));
-            resp.end();
+            if (resp)
+                resp.end();
         }, (ex) => {
-            console.log(ex);
-            resp.end();
+            if (resp)
+                resp.end();
         });
     },
     SetTEMVAL(resp) {
         resp.send(JSON.stringify(this.tem))
         resp.end();
     },
-    SetHUMVAL(HUM, resp) {
-        HUM = HUM;
-        resp.send(JSON.stringify(hum));
+    SetHUMVAL(resp) {
+        resp.send(JSON.stringify(this.humidity));
         resp.end();
     },
     SetADDHUM(status, resp) {
@@ -79,11 +80,11 @@ var AMQP = {
             "PowerSwitch": status
         }
         client.request('SetDeviceProperty', params, reqestOption).then((result) => {
-            console.log(JSON.stringify(result));
-            resp.end();
+            if (resp)
+                resp.end();
         }, (ex) => {
-            console.log(ex);
-            resp.end();
+            if (resp)
+                resp.end();
         });
     },
     SetWAR(status, resp) {
@@ -95,11 +96,9 @@ var AMQP = {
             "PowerSwitch": status
         }
         client.request('SetDeviceProperty', params, reqestOption).then((result) => {
-            console.log(JSON.stringify(result));
             if (resp)
                 resp.end();
         }, (ex) => {
-            console.log(ex);
             if (resp)
                 resp.end();
         });
@@ -133,21 +132,19 @@ var AMQP = {
             console.log(JSON.stringify(result));
             resp.end();
         }, (ex) => {
-            console.log(ex);
             resp.end();
         });
     },
     init() {
-        if (this.MINTEM != '' && this.MAXTEM != '') {
-            console.log("ssssss" + this.MINTEM + "asa" + this.MAXTEM + "\n");
+        if (this.MINTEM != null && this.MAXTEM != null) {
+            // console.log("ssssss" + this.MINTEM + "asa" + this.MAXTEM + "sss" + this.tem + "\n");
             if (this.tem <= this.MINTEM) AMQP.SetWAR("1", ""), AMQP.SetAIR("0", "");
             else if (this.tem >= this.MAXTEM) AMQP.SetAIR("1", ""), AMQP.SetWAR("0", "");
-            else {
-                // AMQP.SetWAR("0", "");
-                // AMQP.SetAIR("0", "");
-            }
-            setTimeout(() => { this.init(); }, 1000);
         }
+        if (this.humidity != '') {
+            if (this.humidity <= this.HUM) AMQP.SetADDHUM("1", "");
+        }
+        setTimeout(() => { this.init(); }, 1000);
     }
 }
 

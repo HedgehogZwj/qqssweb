@@ -51,7 +51,8 @@ export class LedComponent implements OnInit {
     var info = (<HTMLInputElement>document.getElementById('addinfo')).value;
     this.hc.post(this.baseUrl + 'device', { id: id, type: type, info: info }).subscribe((val: any) => {
       if (val.succ) {
-        alert('添加成功')
+        alert('添加成功');
+        this.page$ = 1;
         this.exit();
       }
       else {
@@ -70,7 +71,6 @@ export class LedComponent implements OnInit {
     pages[2].className = 'page hide';
   }
   exit() {
-    this.arr$ = new Array<device>();
     this.query();
     const pages = document.getElementsByClassName('page');
     pages[0].className = 'page';
@@ -78,7 +78,9 @@ export class LedComponent implements OnInit {
     pages[2].className = 'page hide';
     this.command = false;
   }
+
   query() {
+    this.arr$ = new Array<device>();
     var id = (<HTMLInputElement>document.getElementById('id')).value;
     if (id == '') id = "0";
     this.devices$ = <Observable<device>>this.hc.get(this.baseUrl + 'device/led/' + Number.parseInt(id));
@@ -90,9 +92,10 @@ export class LedComponent implements OnInit {
     })
   }
   delete(id) {
-    console.log("de")
+    // console.log("de")
     this.hc.delete(this.baseUrl + 'device/led/' + id).subscribe((val: any) => {
-      console.log("delete")
+      this.page$ = 1;
+      // console.log("delete")
       this.init();
     })
   }
@@ -117,7 +120,7 @@ export class LedComponent implements OnInit {
     else {
       this.hc.put(this.baseUrl + 'device', { id: id, type: type, info: info }).subscribe((val: any) => {
         if (val.succ) {
-          alert('修改成功')
+          alert('修改成功');
           this.exit();
         }
         else {

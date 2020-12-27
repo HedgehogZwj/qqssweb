@@ -12,7 +12,7 @@ export class DataComponent implements OnInit {
   t2;
   MINTEM$ = 0;
   MAXTEM$ = 0;
-  HUM$;
+  HUM$ = 0;
   baseUrl = 'http://localhost:8000/';
   option = {
     xAxis: {
@@ -89,12 +89,14 @@ export class DataComponent implements OnInit {
 
 
   SetHUM() {
-    this.HUM$ = (<HTMLInputElement>document.getElementById('hum')).value;
+    this.HUM$ = Number.parseInt((<HTMLInputElement>document.getElementById('Humidifier')).value);
+    this.hc.put(this.baseUrl + 'SETHUM', { value: this.HUM$ }).subscribe((val: any) => {
+
+    })
   }
   SetAIR() {
     this.MAXTEM$ = Number.parseInt((<HTMLInputElement>document.getElementById('maxtem')).value);
     this.hc.put(this.baseUrl + 'SETMAXTEM', { value: this.MAXTEM$ }).subscribe((val: any) => {
-      console.log('succ')
     })
   }
   SetWARM() {
@@ -142,7 +144,15 @@ export class DataComponent implements OnInit {
       {
         this.option.xAxis.data.splice(0, 1);
       }
-      this.option.xAxis.data.push(date.toLocaleString().substring(date.toLocaleString().length - 8, date.toLocaleString().length));//设置当前时间分秒
+      var string = date.toLocaleString();
+      var ans = "";
+      for (let i = string.length - 1; i >= 0; i--) {
+        if (string[i] != ':' && (string[i] < '0' || string[i] > '9')) {
+          break;
+        }
+        ans = string[i] + ans;
+      }
+      this.option.xAxis.data.push(ans);//设置当前时间分秒
       if (this.option.series[0].data.length == 7) // 如果数组中存在7个数据则删除第一个
       {
         this.option.series[0].data.splice(0, 1);
@@ -162,7 +172,15 @@ export class DataComponent implements OnInit {
       {
         this.option2.xAxis.data.splice(0, 1);
       }
-      this.option2.xAxis.data.push(date.toLocaleString().substring(date.toLocaleString().length - 8, date.toLocaleString().length));//设置当前时间分秒
+      var string = date.toLocaleString();
+      var ans = "";
+      for (let i = string.length - 1; i >= 0; i--) {
+        if (string[i] != ':' && (string[i] < '0' || string[i] > '9')) {
+          break;
+        }
+        ans = string[i] + ans;
+      }
+      this.option2.xAxis.data.push(ans);//设置当前时间分秒
       if (this.option2.series[0].data.length == 7) // 如果数组中存在7个数据则删除第一个
       {
         this.option2.series[0].data.splice(0, 1);

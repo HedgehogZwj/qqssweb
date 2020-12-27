@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
       console.log(val);
       if (val.succ) {
         this.authService.login();
+        this.authService.currentUser = userName;
         this.router.navigate(['/manager']);
       }
       else {

@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
-const logger = require('morgan');
-const bodyParser = require('body-parser');
+const logger = require('morgan');//日志信息
+const bodyParser = require('body-parser');//json
 
-var router = require('./routers/IotRoutes')
+var router = require('./routers/IotRoutes');//路由配置
+
+
 
 app.use(bodyParser.json());
 app.use(logger('dev'))

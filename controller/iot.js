@@ -2,17 +2,17 @@ var data = require('../dao/database').data;
 var message = require('../controller/device');
 
 var iot = {
-    led: function (req, resp) {
-        const id = req.params['id'];
+    led: function (req, resp) { //
+        const id = req.params['id'];//获取请求内容
         const status = req.params['status'];
         data.insert(id, "led", status);
         message.postLED(Number(status));
-        const obj = {
+        const obj = { //定义返回对象
             id: id,
             success: true,
             status: message.aliLedStatus
         };
-        resp.write(JSON.stringify(obj));
+        resp.write(JSON.stringify(obj));//转化成json发动给灯
         resp.end();
     },
     tem: function (req, resp) {

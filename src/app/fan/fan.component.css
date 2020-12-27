@@ -9,4 +9,30 @@ form{
 
 button{
     margin-right: 2vw;
+    margin-top: 2vh;
+}
+
+span{
+    margin-top: 20em;
+    font-size: 1rem;
+}
+
+.upage{
+    margin-left: 20vw;
+}
+.page {
+    width: 80%;
+}
+.hide{
+    display: none;
+} 
+
+.form-upage{
+    width: 40vw;
+    height: 40vh;
+    margin: 15vh 20vw;
+}
+
+.space{
+    margin-top: 5vh;
 }

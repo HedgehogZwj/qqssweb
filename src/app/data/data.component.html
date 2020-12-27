@@ -10,9 +10,12 @@
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
                             <h6 class="my-0 size">Light</h6>
-                            <button type="button" class="btn btn-secondary oc-button" (click)="openLED()">open</button>
-                            <button type="button" class="btn btn-secondary oc-button"
-                                (click)="closeLED()">close</button>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary oc-button"
+                                    (click)="openLED()">open</button>
+                                <button type="button" class="btn btn-secondary oc-button"
+                                    (click)="closeLED()">close</button>
+                            </div>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-brightness-alt-high-fill" viewBox="0 0 16 16">
@@ -23,9 +26,11 @@
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
                             <h6 class="my-0 size">Fan</h6>
-                            <button type="button" class="btn btn-secondary oc-button" (click)="SetFAN(0)">0</button>
-                            <button type="button" class="btn btn-secondary oc-button" (click)="SetFAN(1)">1</button>
-                            <button type="button" class="btn btn-secondary oc-button" (click)="SetFAN(2)">2</button>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary oc-button" (click)="SetFAN(0)">0</button>
+                                <button type="button" class="btn btn-secondary oc-button" (click)="SetFAN(1)">1</button>
+                                <button type="button" class="btn btn-secondary oc-button" (click)="SetFAN(2)">2</button>
+                            </div>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-pie-chart" viewBox="0 0 16 16">
@@ -38,13 +43,17 @@
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
                             <h6 class="my-0 size">Stove</h6>
+                            <div>当前最低温度为{{MINTEM$}}</div>
                             <input type="text" class="form-control" id="mintem" placeholder="输入最低温度/(℃)" value=""
                                 required="">
-                            <button type="button" class="btn btn-secondary oc-button" (click)="openWARM()">open</button>
-                            <button type="button" class="btn btn-secondary oc-button"
-                                (click)="closeWARM()">close</button>
-                            <button type="button" class="btn btn-secondary oc-button" (click)="SetWARM()">ok</button>
-                            <div>{{MINTEM$}}</div>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary oc-button"
+                                    (click)="openWARM()">open</button>
+                                <button type="button" class="btn btn-secondary oc-button"
+                                    (click)="closeWARM()">close</button>
+                            </div>
+                            <button type="button" class="btn btn-secondary oc-button" (click)="SetWARM()"
+                                style="margin-left: 30px;">ok</button>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-thermometer" viewBox="0 0 16 16">
@@ -56,13 +65,19 @@
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
                             <h6 class="my-0 size">Air-conditioning</h6>
+                            <div>当前最高温度为{{MAXTEM$}}</div>
                             <input type="text" class="form-control" id="maxtem" placeholder="输入最高温度/(℃)" value=""
                                 required="">
-                            <button type="button" class="btn btn-secondary oc-button" (click)="openAIR()">open</button>
-                            <button type="button" class="btn btn-secondary oc-button"
-                                (click)="closeAIR()">close</button>
-                            <button type="button" class="btn btn-secondary oc-button" (click)="SetAIR()">ok</button>
-                            <div>{{MAXTEM$}}</div>
+
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary oc-button"
+                                    (click)="openAIR()">open</button>
+                                <button type="button" class="btn btn-secondary oc-button"
+                                    (click)="closeAIR()">close</button>
+                            </div>
+                            <button type="button" class="btn btn-secondary oc-button" (click)="SetAIR()"
+                                style="margin-left: 30px;">ok</button>
+
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-thermometer-half" viewBox="0 0 16 16">
@@ -75,12 +90,17 @@
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
                             <h6 class="my-0 size">Humidifier</h6>
+                            <div>当前理想湿度为{{HUM$}}</div>
                             <input type="text" class="form-control" id="Humidifier" placeholder="输入理想湿度/(%rh)" value=""
                                 required="">
-                            <button type="button" class="btn btn-secondary oc-button" (click)="openHUM()">open</button>
-                            <button type="button" class="btn btn-secondary oc-button"
-                                (click)="closeHUM()">close</button>
-                            <button type="button" class="btn btn-secondary oc-button" (click)="SetHUM()">ok</button>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary oc-button"
+                                    (click)="openHUM()">open</button>
+                                <button type="button" class="btn btn-secondary oc-button"
+                                    (click)="closeHUM()">close</button>
+                            </div>
+                            <button type="button" class="btn btn-secondary oc-button" (click)="SetHUM()"
+                                style="margin-left: 30px;">ok</button>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-droplet-half" viewBox="0 0 16 16">
@@ -106,7 +126,7 @@
                     <div class="bar" style="height: 300px;" id="echart2"></div>
 
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Back To Home</button>
+                    <!-- <button class="btn btn-primary btn-lg btn-block" type="submit">Back To Home</button> -->
                 </form>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <div class="page">
     <form>
-        <button type="button" class="btn btn-dark">&lt;返回</button>
+        <button type="button" class="btn btn-dark" [routerLink]="['/manager/products']">&lt;返回</button>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -51,7 +51,7 @@
 </div>
 <div class="page hide">
     <button type="button" class="btn btn-dark" (click)="exit()">&lt;返回</button>
-    <form class="form-signin">
+    <form class="form-upage">
         <h1 class="h3 mb-3 font-weight-normal">设备添加</h1>
         <label for="addid" class="sr-only">编号</label>
         <input type="text" id="addid" class="form-control" placeholder="编号">
@@ -64,7 +64,7 @@
 </div>
 <div class="page hide">
     <button type="button" class="btn btn-dark" (click)="exit()">&lt;返回</button>
-    <form class=" form-signin">
+    <form class=" form-upage">
         <h1 class="h3 mb-3 font-weight-normal">设备修改</h1>
         <label for="upid" class="sr-only">编号</label>
         <input type="text" id="upid" class="form-control" placeholder="编号" required="" autofocus="">
