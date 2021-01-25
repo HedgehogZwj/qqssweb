@@ -2,14 +2,9 @@ var reqestOption = require('../config/container').reqestOption;
 var client = require('../config/container').client;
 var connection = require('../config/container').connection;
 const container = require('rhea');
-const crypto = require('crypto');
 
 connection.open_receiver();
 var lastid = 0;
-function hmacSha1(key, context) {
-    return Buffer.from(crypto.createHmac('sha1', key).update(context).digest())
-        .toString('base64');
-}
 container.on('message', function (context) {
     var msg = context.message;
     var messageId = msg.message_id;
